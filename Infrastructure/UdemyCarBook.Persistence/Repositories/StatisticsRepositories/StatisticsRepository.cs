@@ -84,7 +84,8 @@ namespace UdemyCarBook.Persistence.Repositories.StatisticsRepositories
 
         public int GetCarCountByFuelElectric()
         {
-            throw new NotImplementedException();
+            var value = _context.Cars.Where(x => x.Fuel == "Elektrik").Count();
+            return value;
         }
 
         public int GetCarCountByFuelGasolineOrDiesel()
