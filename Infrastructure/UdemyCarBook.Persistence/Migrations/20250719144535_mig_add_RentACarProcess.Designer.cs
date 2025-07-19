@@ -12,8 +12,8 @@ using UdemyCarBook.Persistence.Context;
 namespace UdemyCarBook.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    [Migration("20250719125202_mig_add_RentACarProcess1")]
-    partial class mig_add_RentACarProcess1
+    [Migration("20250719144535_mig_add_RentACarProcess")]
+    partial class mig_add_RentACarProcess
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -503,8 +503,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("DropOffDate")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("DropOffDate")
+                        .HasColumnType("Date");
 
                     b.Property<string>("DropOffDescription")
                         .IsRequired()
@@ -516,8 +516,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<TimeSpan>("DropOffTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("PickUpDate")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("PickUpDate")
+                        .HasColumnType("Date");
 
                     b.Property<string>("PickUpDescription")
                         .IsRequired()

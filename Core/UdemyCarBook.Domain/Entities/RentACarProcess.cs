@@ -16,11 +16,11 @@ namespace UdemyCarBook.Domain.Entities
         public int PickUpLocation { get; set; }
         public int DropOffLocation { get; set; }
 
-        [DataType(DataType.Date)]
-        public TimeSpan PickUpDate { get; set; }
+        [Column(TypeName ="Date")]
+        public DateTime PickUpDate { get; set; }
 
-        [DataType(DataType.Date)]
-        public TimeSpan DropOffDate { get; set; }
+        [Column(TypeName = "Date")]
+        public DateTime DropOffDate { get; set; }
 
         [DataType(DataType.Time)]
         public TimeSpan PickUpTime { get; set; }

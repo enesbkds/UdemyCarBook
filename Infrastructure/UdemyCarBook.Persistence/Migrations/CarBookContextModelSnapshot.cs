@@ -500,8 +500,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("DropOffDate")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("DropOffDate")
+                        .HasColumnType("Date");
 
                     b.Property<string>("DropOffDescription")
                         .IsRequired()
@@ -513,8 +513,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<TimeSpan>("DropOffTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("PickUpDate")
-                        .HasColumnType("time");
+                    b.Property<DateTime>("PickUpDate")
+                        .HasColumnType("Date");
 
                     b.Property<string>("PickUpDescription")
                         .IsRequired()
