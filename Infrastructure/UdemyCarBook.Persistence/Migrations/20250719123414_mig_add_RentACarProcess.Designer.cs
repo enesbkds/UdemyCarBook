@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UdemyCarBook.Persistence.Context;
 
@@ -11,9 +12,11 @@ using UdemyCarBook.Persistence.Context;
 namespace UdemyCarBook.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20250719123414_mig_add_RentACarProcess")]
+    partial class mig_add_RentACarProcess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -500,8 +503,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("DropOffDate")
-                        .HasColumnType("time");
+                    b.Property<DateOnly>("DropOffDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("DropOffDescription")
                         .IsRequired()
@@ -510,11 +513,11 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int>("DropOffLocation")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("DropOffTime")
+                    b.Property<TimeOnly>("DropOffTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("PickUpDate")
-                        .HasColumnType("time");
+                    b.Property<DateOnly>("PickUpDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("PickUpDescription")
                         .IsRequired()
@@ -523,7 +526,7 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int>("PickUpLocation")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("PickUpTime")
+                    b.Property<TimeOnly>("PickUpTime")
                         .HasColumnType("time");
 
                     b.Property<decimal>("TotalPrice")

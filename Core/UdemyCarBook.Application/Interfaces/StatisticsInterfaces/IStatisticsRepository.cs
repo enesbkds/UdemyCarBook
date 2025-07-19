@@ -19,7 +19,7 @@ namespace UdemyCarBook.Application.Interfaces.StatisticsInterfaces
         int GetCarCountByTranmissionIsAuto();
         string GetBrandNameByMaxCar();
         string GetBlogTitleByMaxBlogComment();
-        int GetCarCountByKmSmallerThen1000();
+        int GetCarCountByKmSmallerThen10000();
         int GetCarCountByFuelGasolineOrDiesel();
         int GetCarCountByFuelElectric();
         string GetCarBrandAndModelByRentPriceDailyMax();
