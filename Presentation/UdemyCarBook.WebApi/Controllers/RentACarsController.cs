@@ -10,16 +10,20 @@ namespace UdemyCarBook.WebApi.Controllers
     public class RentACarsController : ControllerBase
     {
         private readonly IMediator _mediator;
-
         public RentACarsController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetRentACarListByLocation(GetRentACarQuery query)
+        [HttpGet]
+        public async Task<IActionResult> GetRentACarListByLocation(int locationID, bool avaliable)
         {
-            var values = await _mediator.Send(query);
+            GetRentACarQuery getRentACarQuery = new GetRentACarQuery()
+            {
+                Avaliable = avaliable,
+                LocationID = locationID
+            };
+            var values = await _mediator.Send(getRentACarQuery);
             return Ok(values);
         }
     }

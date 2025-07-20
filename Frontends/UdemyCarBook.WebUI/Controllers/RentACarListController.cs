@@ -1,13 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+using UdemyCarBook.Dto.BrandDtos;
+using UdemyCarBook.Dto.RentACarDtos;
 
 namespace UdemyCarBook.WebUI.Controllers
 {
     public class RentACarListController : Controller
     {
-        public IActionResult Index()
+        private readonly IHttpClientFactory _httpClientFactory;
+        public RentACarListController(IHttpClientFactory httpClientFactory)
         {
-            var data = TempData["value"];
-            ViewBag.v = data;
+            _httpClientFactory = httpClientFactory;
+        }
+        public async Task<IActionResult> Index(int id)
+        {
+
+            var locationID = TempData["locationID"];
+
+            //filterRentACarDto.locationID = int.Parse(locationID.ToString());
+            //filterRentACarDto.avaliable = true;
+            id = int.Parse(locationID.ToString());
+
+            ViewBag.locationID = locationID;
+
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7112/api/RentACars?locationID={id}&avaliable=true");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<FilterRentACarDto>>(jsonData);
+                return View(values);
+            }
             return View();
         }
     }
