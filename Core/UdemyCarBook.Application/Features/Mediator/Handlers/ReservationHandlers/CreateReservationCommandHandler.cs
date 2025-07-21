@@ -31,7 +31,6 @@ namespace UdemyCarBook.Application.Features.Mediator.Handlers.ReservationHandler
                 Phone = request.Phone,
                 PickUpLocationID = request.PickUpLocationID,
                 Surname = request.Surname,
-                Status = "Rezervasyon Alındı"
             });
         }
     }

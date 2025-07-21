@@ -555,6 +555,9 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DriverLicenseYear")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DropOffLocationID")
                         .HasColumnType("int");
 
@@ -578,6 +581,8 @@ namespace UdemyCarBook.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservationID");
+
+                    b.HasIndex("CarId");
 
                     b.HasIndex("DropOffLocationID");
 
@@ -817,6 +822,12 @@ namespace UdemyCarBook.Persistence.Migrations
 
             modelBuilder.Entity("UdemyCarBook.Domain.Entities.Reservation", b =>
                 {
+                    b.HasOne("UdemyCarBook.Domain.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("UdemyCarBook.Domain.Entities.Location", "DropOffLocation")
                         .WithMany("DropOffReservation")
                         .HasForeignKey("DropOffLocationID");
@@ -824,6 +835,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.HasOne("UdemyCarBook.Domain.Entities.Location", "PickUpLocation")
                         .WithMany("PickUpReservation")
                         .HasForeignKey("PickUpLocationID");
+
+                    b.Navigation("Car");
 
                     b.Navigation("DropOffLocation");
 

@@ -22,6 +22,5 @@ namespace UdemyCarBook.Domain.Entities
         public string? Description { get; set; }
         public Location PickUpLocation { get; set; }
         public Location DropOffLocation { get; set; }
-        public string Status { get; set; }
     }
 }

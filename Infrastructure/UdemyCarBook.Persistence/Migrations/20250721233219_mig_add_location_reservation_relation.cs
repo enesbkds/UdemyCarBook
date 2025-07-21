@@ -29,11 +29,18 @@ namespace UdemyCarBook.Persistence.Migrations
                     DropOffLocationID = table.Column<int>(type: "int", nullable: true),
                     CarId = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
+                    DriverLicenseYear = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationID);
+                    table.ForeignKey(
+                        name: "FK_Reservations_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservations_Locations_DropOffLocationID",
                         column: x => x.DropOffLocationID,
@@ -45,6 +52,11 @@ namespace UdemyCarBook.Persistence.Migrations
                         principalTable: "Locations",
                         principalColumn: "LocationID");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_CarId",
+                table: "Reservations",
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_DropOffLocationID",
