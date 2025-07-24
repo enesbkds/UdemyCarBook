@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
-using UdemyCarBook.Dto.BrandDtos;
 using UdemyCarBook.Dto.RentACarDtos;
 
 namespace UdemyCarBook.WebUI.Controllers
