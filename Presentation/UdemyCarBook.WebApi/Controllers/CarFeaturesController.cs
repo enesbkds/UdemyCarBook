@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UdemyCarBook.Application.Features.Mediator.Commands.CarFeatureCommands;
+using UdemyCarBook.Application.Features.Mediator.Queries.BlogQueries;
 using UdemyCarBook.Application.Features.Mediator.Queries.CarFeatureQueries;
 
 namespace UdemyCarBook.WebApi.Controllers
@@ -21,6 +23,25 @@ namespace UdemyCarBook.WebApi.Controllers
             return Ok(values);
         }
 
-        
+        [HttpGet("CarFeatureChangeAvailableToFalse")]
+        public async Task<IActionResult> CarFeatureChangeAvailableToFalse(int id)
+        {
+            _mediator.Send(new UpdateCarFeatureAvaliableChangeToFalseCommand(id));
+            return Ok("Güncelleme Yapıldı");
+        }
+
+        [HttpGet("CarFeatureChangeAvailableToTrue")]
+        public async Task<IActionResult> CarFeatureChangeAvailableToTrue(int id)
+        {
+            _mediator.Send(new UpdateCarFeatureAvaliableChangeToTrueCommand(id));
+            return Ok("Güncelleme Yapıldı");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCarFeatureByCarID(CreateCarFeatureByCarCommand command)
+        {
+            _mediator.Send(command);
+            return Ok("Ekleme Yapıldı");
+        }
     }
 }
