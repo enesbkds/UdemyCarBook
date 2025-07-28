@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
@@ -6,6 +7,7 @@ using UdemyCarBook.Dto.RentACarDtos;
 
 namespace UdemyCarBook.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class RentACarListController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -20,7 +22,10 @@ namespace UdemyCarBook.WebUI.Controllers
 
             //filterRentACarDto.locationID = int.Parse(locationID.ToString());
             //filterRentACarDto.avaliable = true;
-            id = int.Parse(locationID.ToString());
+            if (locationID != null && int.TryParse(locationID.ToString(), out int tempLocationId))
+            {
+                id = tempLocationId;
+            }
 
             ViewBag.locationID = locationID;
 
